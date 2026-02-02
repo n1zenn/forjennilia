@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Valentine E-Card ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    text-align:center;
+    background:#fff5f7;
+}
+.page{
+    display:none;
+    padding:40px 20px;
+}
+.active{
+    display:block;
+}
+button{
+    padding:10px 20px;
+    font-size:16px;
+    border:none;
+    border-radius:8px;
+    background:#ff4d6d;
+    color:white;
+    cursor:pointer;
+    margin:10px;
+}
+button:hover{
+    background:#e63950;
+}
+.board{
+    display:grid;
+    grid-template-columns:repeat(3,100px);
+    gap:5px;
+    justify-content:center;
+    margin:20px auto;
+}
+.cell{
+    width:100px;
+    height:100px;
+    font-size:32px;
+    background:white;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+.final-img{
+    width:300px;
+    max-width:90%;
+    border-radius:15px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 - XO Game -->
+<div class="page active" id="page1">
+    <h2>First, beat me in Tic Tac Toe 😉</h2>
+    <div class="board" id="board"></div>
+    <p id="result"></p>
+    <button onclick="nextPage(2)">Skip</button>
+</div>
+
+<!-- PAGE 2 - Envelope -->
+<div class="page" id="page2">
+    <h2>Click the letter 💌</h2>
+    <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" width="120" onclick="nextPage(3)" style="cursor:pointer;">
+    <p style="margin-top:10px; font-style:italic;">Tap the letter</p>
+</div>
+
+<!-- PAGE 3 - Letter -->
+<div class="page" id="page3">
+    <h2>Here's a special letter 💌</h2>
+    <img src="https://cdn-icons-png.flaticon.com/512/2942/2942485.png" width="120" onclick="nextPage(4)" style="cursor:pointer;">
+    <p style="margin-top:10px; font-style:italic;">Tap to open</p>
+</div>
+
+<!-- PAGE 4 - Valentine Question -->
+<div class="page" id="page4">
+    <h2>Will you be my Valentine? ❤️</h2>
+    <button id="yesBtn" onclick="yesClicked()">Yes</button>
+    <button id="noBtn" onclick="moveNo()">No</button>
+</div>
+
+<!-- PAGE 5 - Knew it!! -->
+<div class="page" id="page5">
+    <h2>Knew it!! Loveee yaa!! 😘</h2>
+    <button onclick="nextPage(6)">Next</button>
+</div>
+
+<!-- PAGE 6 - Final static image -->
+<div class="page" id="page6">
+    <h2>💖 Here’s something special for you 💖</h2>
+    <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/cute-1296012_960_720.png" class="final-img">
+</div>
+
+<script>
+// ------------------ XO Game ------------------
+let currentPlayer = "X";
+let board = ["","","","","","","","",""];
+let gameActive = true;
+const boardDiv = document.getElementById("board");
+const result = document.getElementById("result");
+
+function createBoard(){
+    boardDiv.innerHTML="";
+    board.forEach((cell,index)=>{
+        const div=document.createElement("div");
+        div.classList.add("cell");
+        div.innerText=cell;
+        div.onclick=()=>handleClick(index);
+        boardDiv.appendChild(div);
+    });
+}
+
+function handleClick(index){
+    if(board[index]!=="" || !gameActive) return;
+    board[index]="X";
+    createBoard();
+    if(checkWin("X")){
+        result.innerText="Yay! You won my heart! ❤️";
+        gameActive=false;
+        return;
+    }
+    aiMove();
+}
+
+function aiMove(){
+    let empty = board.map((v,i)=>v===""?i:null).filter(v=>v!==null);
+    if(empty.length===0) return;
+    // medium AI: block center if free, else random
+    let move = board[4]==="" ? 4 : empty[Math.floor(Math.random()*empty.length)];
+    board[move]="O";
+    createBoard();
+    if(checkWin("O")){
+        result.innerHTML='AI wins 😅 <br><button onclick="restart()">Retry</button>';
+        gameActive=false;
+    }
+}
+
+function checkWin(player){
+    const combos=[
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
+    ];
+    return combos.some(combo=>{
+        return combo.every(index=>board[index]===player);
+    });
+}
+
+function restart(){
+    board=["","","","","","","","",""];
+    gameActive=true;
+    result.innerText="";
+    createBoard();
+}
+
+createBoard();
+
+// ------------------ Navigation ------------------
+function nextPage(num){
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.getElementById("page"+num).classList.add("active");
+}
+
+// ------------------ Valentine Question ------------------
+const noBtn = document.getElementById("noBtn");
+function moveNo(){
+    // move No button slightly randomly
+    noBtn.style.position="relative";
+    let x=Math.floor(Math.random()*50)-25; // -25 to 25 px
+    let y=Math.floor(Math.random()*30)-15; // -15 to 15 px
+    noBtn.style.left=x+"px";
+    noBtn.style.top=y+"px";
+}
+
+function yesClicked(){
+    nextPage(5);
+}
+</script>
+
+</body>
+</html>

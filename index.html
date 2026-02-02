@@ -55,6 +55,14 @@ button:hover{
     box-shadow:0 10px 20px rgba(0,0,0,0.2);
     margin-top:20px;
 }
+.page-img{
+    width:200px;
+    max-width:80%;
+    margin-top:20px;
+    cursor:pointer;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
 </style>
 </head>
 
@@ -71,34 +79,38 @@ button:hover{
 <!-- PAGE 2 - Envelope -->
 <div class="page" id="page2">
     <h2>Click the letter 💌</h2>
-    <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" width="120" onclick="nextPage(3)" style="cursor:pointer;">
+    <img src="https://i.ibb.co/zVx69VwY/image.png" class="page-img" onclick="nextPage(3)">
     <p style="margin-top:10px; font-style:italic;">Tap the letter</p>
 </div>
 
 <!-- PAGE 3 - Letter -->
 <div class="page" id="page3">
     <h2>Here's a special letter 💌</h2>
-    <img src="https://cdn-icons-png.flaticon.com/512/2942/2942485.png" width="120" onclick="nextPage(4)" style="cursor:pointer;">
+    <img src="https://i.ibb.co/21y0Kpnn/image.png" class="page-img" onclick="nextPage(4)">
     <p style="margin-top:10px; font-style:italic;">Tap to open</p>
 </div>
 
 <!-- PAGE 4 - Valentine Question -->
 <div class="page" id="page4">
     <h2>Will you be my Valentine? ❤️</h2>
-    <button id="yesBtn" onclick="yesClicked()">Yes</button>
-    <button id="noBtn" onclick="moveNo()">No</button>
+    <img src="https://i.ibb.co/bM13yHrJ/image.png" class="page-img">
+    <div style="margin-top:20px;">
+        <button id="yesBtn" onclick="yesClicked()">Yes</button>
+        <button id="noBtn" onclick="moveNo()">No</button>
+    </div>
 </div>
 
 <!-- PAGE 5 - Knew it!! -->
 <div class="page" id="page5">
     <h2>Knew it!! Loveee yaa!! 😘</h2>
+    <img src="https://i.ibb.co/3myGXwZD/image.png" class="page-img">
     <button onclick="nextPage(6)">Next</button>
 </div>
 
 <!-- PAGE 6 - Final static image -->
 <div class="page" id="page6">
     <h2>💖 Here’s something special for you 💖</h2>
-    <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/cute-1296012_960_720.png" class="final-img">
+    <img src="https://i.ibb.co/RrZgt9S/image.png" class="final-img">
 </div>
 
 <script>

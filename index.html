@@ -76,22 +76,15 @@ button:hover{
     <button onclick="nextPage(2)">Skip</button>
 </div>
 
-<!-- PAGE 2 - Envelope -->
+<!-- PAGE 2 - Letter -->
 <div class="page" id="page2">
-    <h2>Click the letter 💌</h2>
-    <img src="https://ibb.co/YTJ1wjTc" class="page-img" onclick="nextPage(3)">
-    <p style="margin-top:10px; font-style:italic;">Tap the letter</p>
-</div>
-
-<!-- PAGE 3 - Letter -->
-<div class="page" id="page3">
     <h2>Here's a special letter 💌</h2>
-    <img src="https://i.ibb.co/21y0Kpnn/image.png" class="page-img" onclick="nextPage(4)">
+    <img src="https://i.ibb.co/21y0Kpnn/image.png" class="page-img" onclick="nextPage(3)">
     <p style="margin-top:10px; font-style:italic;">Tap to open</p>
 </div>
 
-<!-- PAGE 4 - Valentine Question -->
-<div class="page" id="page4">
+<!-- PAGE 3 - Valentine Question -->
+<div class="page" id="page3">
     <h2>Will you be my Valentine? ❤️</h2>
     <img src="https://i.ibb.co/bM13yHrJ/image.png" class="page-img">
     <div style="margin-top:20px;">
@@ -100,15 +93,15 @@ button:hover{
     </div>
 </div>
 
-<!-- PAGE 5 - Knew it!! -->
-<div class="page" id="page5">
+<!-- PAGE 4 - Knew it!! -->
+<div class="page" id="page4">
     <h2>Knew it!! Loveee yaa!! 😘</h2>
     <img src="https://i.ibb.co/3myGXwZD/image.png" class="page-img">
-    <button onclick="nextPage(6)">Next</button>
+    <button onclick="nextPage(5)">Next</button>
 </div>
 
-<!-- PAGE 6 - Final static image -->
-<div class="page" id="page6">
+<!-- PAGE 5 - Final static image -->
+<div class="page" id="page5">
     <h2>💖 Here’s something special for you 💖</h2>
     <img src="https://i.ibb.co/RrZgt9S/image.png" class="final-img">
 </div>
@@ -195,7 +188,7 @@ function moveNo(){
 }
 
 function yesClicked(){
-    nextPage(5);
+    nextPage(4);
 }
 </script>
 
